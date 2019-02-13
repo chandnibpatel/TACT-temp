@@ -1,0 +1,365 @@
+body {
+    background: #98C2EC;  
+    overflow-x: hidden;    
+}
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+.content-wrapper {
+    padding-bottom: 2.5rem;
+}
+.logo img {
+    width: 250px;
+    height: 62px;
+}
+
+#particles-js canvas {
+    display: block;
+    vertical-align: bottom;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
+    transition: opacity .8s ease, transform 1.4s ease
+}
+#particles-js {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -10;
+    top: 0;
+    left: 0
+}
+.required {
+    color: red;
+}
+.logo img {
+    margin: auto;
+  
+}
+.login-card {
+    width: 300px;
+    margin: auto;
+}
+
+.admin-row h4 {
+    text-align: center;
+}
+.admin-panel .card-body, .user-group-panel .card-body {
+    min-height: 400px;
+}
+.user-group-panel .card-body {
+    min-width: 300px;
+    padding: .25rem;
+}
+.control-labels label {
+    margin: 10px 0 0 10px;
+}
+.control-buttons i {
+   margin-right: 5px;
+   color: #3788DB;
+   opacity: .85;
+}
+.control-buttons i:hover {
+    opacity: 1;
+}
+.admin-group:hover, .user-group:hover {
+    background: #e5e5e5;
+}
+.admin-group, .user-group {
+    border: 1px solid #e5e5e5;
+    min-height: 50px;
+    min-width: 300px;
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    cursor: pointer;
+    
+}
+.admin-group img, .modal-header img {
+    float: left;
+    margin-right: 10px;
+    width: 50px;
+    
+}
+.admin-group span,  .user-group span {
+    display: inline;
+    font-size: 1.5rem;
+    position: relative;
+    top: 5px;
+    padding-left: 15px;
+  }
+
+.row.activity-row-header.mt-3 h4 {
+    display: inline-block;
+    margin-bottom: .25rem;
+}
+span#showGroupShortDesc {
+    margin-left: 10px;
+    margin-top: 4px;
+}
+span#addGroupActivityShortDesc {
+    vertical-align: bottom;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+#showGroupDesc p, .created-by {
+    font-size: .75rem;
+}
+span#showGroupLongDesc {
+    font-size: .8rem;    
+}
+.activity-row-header {
+    margin-left: .2rem;
+    
+}
+.activity-row-header h1 {
+    display: inline-block;
+    position: relative;
+    top: 12px;
+    left: 5px;
+}
+.activity-row-desc {
+    padding: 1rem 2rem;
+}
+.activity-row .card-body {
+    min-height: 200px;
+    padding: 0 2rem;
+}
+.activity-btn {
+    float: right;
+}
+.card-header {
+    background: #1C5C9B;
+    color: #fff;
+}
+.card.border-dark.mb-3 {
+    border: 1px solid #1C5C9B !important;
+}
+.card-text {
+    margin-top: 20px;
+}
+.card-deactive {
+    opacity: .5;
+}
+.user-activity-card-body {
+    max-width: 200px;
+    margin: 0;
+    padding: .5rem;
+    font-size: .75rem;
+}
+.my-activity-card {
+    min-width: 300px;
+}
+.card-body.user-activity-card-body {
+    margin: auto;
+}
+.fb-btn {
+    background-color: #3B5998;
+    color: white;
+  }
+  
+.twitter-btn {
+    background-color: #55ACEE;
+    color: white;
+  }  
+.google-btn {
+    background-color: #dd4b39;
+    color: white;
+  }
+.login-btn {
+    display: block;
+    width: 250px;
+    margin: 0 auto 1rem;
+    text-transform: uppercase;
+    opacity: .85;
+}
+.login-btn:hover {
+    color: #fff;
+    opacity: 1;
+}
+.login-btn i {
+    float: left;
+    position: relative;
+    top: 3px;
+}
+.social-btns {
+    background: #e5e5e5;
+    width: 350px;
+    padding: 3rem;
+    border-radius: 10px;
+    margin: auto;
+}
+.user-details {
+    background: #573E8A;
+    border-radius: 5px;
+    max-height: 35px;
+    padding: .2rem .33rem;
+    
+}
+.user-details a {
+    color: #fff;
+    text-decoration: none;
+}
+a.dropdown-item {
+    color: #573E8A;
+}
+.user-details img {
+    width: 25px;
+    height: 25px;
+    margin-right: .25rem;   
+}
+.user-details i {
+    margin-right: .25rem;
+    cursor: pointer;
+}
+.mini-nav i, .mini-nav span  {    
+    cursor: pointer;
+    color: #573E8A;
+    opacity: .85;
+}
+.mini-nav i {
+    font-size: 25px;
+    
+}
+.mini-nav span {
+   font-weight: bold;   
+   vertical-align: top;
+}
+
+.mini-nav i:hover {
+    opacity: 1;
+}
+.result-tab-content {    
+    padding: 1rem;
+    border-left: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+  }
+.footer-row {
+    text-align: center;
+}
+
+#truthOrLieSubmitBox {
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(54, 139, 219);
+    background: rgb(54, 139, 219, .4);
+    padding: 25px;
+    margin: 20px;
+    margin-left: 75px;
+    margin-right: 75px;
+    border-radius: 25px;
+}
+
+#truthOrLieGameBox {
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(54, 139, 219);
+    padding: 25px;
+    margin: 20px;
+    margin-left: 75px;
+    margin-right: 75px;
+    border-radius: 25px;
+    background: rgb(54, 139, 219, .4);
+}
+
+#input-submit {
+    background: #573E8A;
+    color: white;
+}
+
+.dropdown:not(:first)  {
+    margin-bottom: 15px;
+}
+
+.dropdown-toggle:not(:first)  {
+    width: 85%;
+}
+
+.dropdown-menu:not(:first)  {
+    width: 77%;
+}
+
+#selectScreenHeader {
+    font-size: 35px;
+    border-bottom: 2px;
+    border-bottom: solid;
+    padding: 20px;
+}
+
+.play-game-button {
+    border-radius: 6px;
+    background-color: #573E8A;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 22px;
+    padding: 20px;
+    width: 250px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    display: block;
+    margin: 0 auto;
+}
+
+.play-game-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.play-game-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+.play-game-button:hover span {
+    padding-right: 25px;
+    color: white;
+  }
+
+.play-game-button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+#hide-play-button {
+    display: none;
+}
+
+.two-truths-game-option {
+    font-size: 25px;
+}
+
+.begin-game {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 75px;
+    background-color: #573E8A;
+    border: none;
+    color: #FFFFFF;
+    font-size: 25px;
+    border-radius: 8px;
+}

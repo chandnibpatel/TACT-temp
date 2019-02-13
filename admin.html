@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TACT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="assets/js/particles.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>
+    <script src="assets/js/firebase.js"></script>
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <div class="page-container">
+        <div class="container content-wrap">
+            <header>
+                <div class="row">
+                    <div class="col-lg-4 d-none d-lg-block d-xl-block">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center mt-3 logo">
+                        <img src="assets/images/Logo.svg" alt="Logo">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 d-flex justify-content-end mt-2">
+                        <div class="mini-nav mt-2">
+                            <a href="index.html"><i class="fas fa-home fa-lg mr-2"></i></a>
+                            <i class="fas fa-bell fa-lg mr-3"></i>
+                        </div>
+                        <div class="dropdown user-details">
+                            <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
+                                <span class="d-none d-lg-inline d-xl-inline" id="userProfileName">FirstName
+                                    LastName</span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" id="logOutLink" href="#">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+            </header>
+            <section id="backToAdminPanel">
+                <div class="col-12 mb-2 mini-nav mt-2">
+                    <span><i class="fas fa-angle-double-left"></i> Back to Admin
+                        Panel</span>
+                </div>
+            </section>
+            <section id="adminHome">
+                <div class="row mt-5 admin-row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 admin-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Admin Controls</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row control-labels">
+                                    <label for="users">Users</label>
+                                </div>
+                                <div class="row control-buttons">
+                                    <a href="index.html"><i class="fa fa-home fa-3x fa-border"
+                                            aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-user-plus fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-user-edit fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-user-minus fa-3x fa-border" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="row control-labels">
+                                    <label for="users">Groups</label>
+                                </div>
+                                <div class="row control-buttons">
+                                    <a id="addGroup" href="#" data-toggle="modal" data-target="#addGroupModal"><i
+                                            class="fa fa-plus fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-search fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-edit fa-3x fa-border" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-trash fa-3x fa-border" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 admin-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>My Groups</h4>
+                            </div>
+                            <div id="myGroups" class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="resultsScorecard">
+                <div class="row mt-3 admin-row">
+                    <div class="col-12 admin-panel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Results Scorecard</h4>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs" id="resultTab" role="tablist">
+                                    <!-- <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#result1"
+                                            role="tab">Result 1</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#result2"
+                                            role="tab">Result 2</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#result3"
+                                            role="tab">Result 3</a>
+                                    </li> -->
+                                </ul>
+                                <div class="tab-content" id="resultTabContent">
+                                    <!-- <div class="tab-pane fade show active result-tab-content" id="result1"
+                                        role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h3>2 Truths & A Lie</h3>
+                                                <small>Classic game of two truths & a lie. Provides admin user report
+                                                    for recommended team building venues.</small>
+
+                                            </div>
+                                            <div class="col-6">
+                                                <h3>Suggested Venues</h3>
+                                                <img src="assets/images/resultDemo.jpg" width="500" />
+                                            </div>
+                                        </div>
+
+                                    </div> -->
+                                    <div class="tab-pane fade result-tab-content" id="result2" role="tabpanel">result2
+                                    </div>
+                                    <div class="tab-pane fade result-tab-content" id="result3" role="tabpanel">result3
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="addGroupActivity">
+                <div class="row activity-row-header mt-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Activities for: <span id="addGroupActivityTitle"></span></h4><span id="addGroupActivityShortDesc"></span>
+                        </div>
+                        <h5 class="activity-row-desc">Recommended for you...</h5>
+                        <div id="addActivityRow" class="row activity-row">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+
+            </section>
+            <!-- Modals -->
+            <!-- Add Group Modal -->
+            <div class="modal fade" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="addGroupModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addGroupModalLabel">New Group</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form name="addNewGroupForm">
+                                <div class="form-group">
+                                    <label for="newGroupName"><span class="required">*</span> Name</label>
+                                    <input name="newGroupName" type="text" class="form-control" id="newGroupName"
+                                        aria-describedby="groupName" placeholder="Enter a name for your group">
+                                    <small id="groupNameHelp" class="form-text text-muted">Limit 140 characters</small>
+                                    <span class="required" id="newGroupNameError">Please enter a group name</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newGroupNameShortDesc">Give your group a short descriptor..</label>
+                                    <input name="newGroupNameShortDesc" type="text" class="form-control"
+                                        id="newGroupNameShortDesc" aria-describedby="groupName"
+                                        placeholder="e.g. 'Late Shift', 'Night Class', etc.">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newGroupNameLongDesc">Give a longer description of your group..</label>
+                                    <textarea class="form-control" id="newGroupNameLongDesc" rows="3"></textarea>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="publicPrivate" id="groupPublic"
+                                        value="0" checked="checked">
+                                    <label class="form-check-label" for="groupPublic">Public</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="publicPrivate" id="groupPrivate"
+                                        value="1" disabled>
+                                    <label class="form-check-label" for="groupPrivate">Private</label>
+                                </div>
+                                <!-- not ready to implement uploading of profile pictures -->
+                                <!-- <div class="form-group">
+                                    <label for="groupProfilePic">Upload a group profile pic</label>
+                                    <input type="file" class="form-control-file" id="groupProfilePic">
+                                </div>
+                                <small id="groupNameHelp" class="form-text text-muted">Must be 10mb or smaller</small> -->
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button id="submitNewGroupName" type="button" class="btn btn-primary">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Show Group Modal -->
+            <div class="modal fade" id="showGroupModal" tabindex="-1" role="dialog"
+                aria-labelledby="showGroupModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <img src="https://avatars3.githubusercontent.com/u/17503864?s=70&v=4"> -->
+                            <h5 class="modal-title" id="showGroupModalTitle"></h5><span id="showGroupShortDesc"></span>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="created-by pl-3">
+                            Created by <span id="showGroupCreatedBy"></span> on <span id="showGroupCreatedOn"></span>
+                        </div>
+                        <div id="showGroupModalBody" class="modal-body pt-0">
+                            <span id="showGroupLongDesc"></span>
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Activities</h5>
+                                    <ul id="adminActivitiesScheduled" class="card-text"></ul>
+                                    <a id="addNewGroupActivity" href="#" class="btn btn-primary"
+                                        data-dismiss="modal">Add
+                                        Activity</a>
+                                </div>
+                            </div>
+                            <div class="card mt-1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Results</h5>
+                                    <ul id="adminShowResults" class="card-text"></ul>
+                                    <a id="showGroupResults" href="#" class="btn btn-secondary">See Results</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Show confirm Ac Modal -->
+            <div class="modal fade" id="confirmAddActivityModal" tabindex="-1" role="dialog"
+                aria-labelledby="confirmAddActivityModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmAddActivityModalLabel">You are about to add:</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div id="confirmAddActivityModalBody" class="modal-body">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 id="confirmAddActivityName" class="card-title"></h5>
+                                    <p id="confirmAddActivityDesc" class="card-text"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="cancelAddActivity" type="button" class="btn btn-danger"
+                                data-dismiss="modal">Cancel</button>
+                            <button id="confirmAddActivityBtn" type="button" class="btn btn-success">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row footer-row mt-5">
+                <div class="col-12">
+                    <p>Copyright &copy; 2019 <br> TACT</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- begin js files -->
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="assets/js/firebaseDb.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <!-- end js files -->
+</body>
+
+</html>
